@@ -1,7 +1,7 @@
 exit # Dont run this as a script
 
 # LLVM seems to work great on Musl, there only seems some build errors
-# when trying to build the sanitizers.  So sanitizers have been enabled.
+# when trying to build the sanitizers.  So sanitizers have been disabled.
 # This is rougly based on this: 
 # https://wiki.musl-libc.org/building-llvm.html
 # But updated for LLVM 8

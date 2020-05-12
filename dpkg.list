@@ -1,0 +1,9 @@
+git
+wget
+unzip
+make
+libssl-dev
+autoconf
+automake
+libtool
+g++

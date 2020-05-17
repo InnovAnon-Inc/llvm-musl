@@ -222,19 +222,19 @@ RUN rm -rf musl-1.2.0.tar.gz musl-1.2.0 musl-build1
 # TODO this is borked.
 #      it was like that when I got here,
 #      but I probably made it worse
-#RUN git clone --depth=1 https://github.com/libunwind/libunwind
-#WORKDIR libunwind
-#RUN ./autogen.sh
-#RUN mkdir -pv ${B}/libunwind-build
-#WORKDIR ${B}/libunwind-build
-#RUN sed -i 's/LIBCRTS="-lgcc_s"/LIBCRTS=""/'  ${B}/src/libunwind/configure
-#RUN ${B}/src/libunwind/configure --prefix=${B}/target1 --enable-cxx-exceptions \
-#  --disable-tests --host=${TARGET_ARCH}
-##RUN make -j $(nproc)
-#RUN make
-#RUN make install
-#WORKDIR ${B}/src
-#RUN rm -rf ${B}/libunwind-build libunwind
+RUN git clone --depth=1 https://github.com/libunwind/libunwind
+WORKDIR libunwind
+RUN ./autogen.sh
+RUN mkdir -pv ${B}/libunwind-build
+WORKDIR ${B}/libunwind-build
+RUN sed -i 's/LIBCRTS="-lgcc_s"/LIBCRTS=""/'  ${B}/src/libunwind/configure
+RUN ${B}/src/libunwind/configure --prefix=${B}/target1 --enable-cxx-exceptions \
+  --disable-tests --host=${TARGET_ARCH}
+#RUN make -j $(nproc)
+RUN make
+RUN make install
+WORKDIR ${B}/src
+RUN rm -rf ${B}/libunwind-build libunwind
 
 #RUN git clone --depth=1 https://github.com/pathscale/libcxxrt.git
 #RUN mkdir -pv  ${B}/libcxxrt-build

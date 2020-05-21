@@ -347,7 +347,7 @@ WORKDIR /
 
 RUN apt-fast purge --autoremove -y `cat dpkg.list`
 RUN ./poobuntu-clean.sh
-RUN rm -v dpkg.list poobuntu-clean.sh
+RUN rm -v dpkg.list
 
 
 

@@ -3,7 +3,7 @@
 # https://gist.github.com/croepha/cdaf30638109b1a949f35aa215a7c86d
 
 # Use the official image as a parent image.
-FROM poobuntu:latest
+FROM innovanon/poobuntu:latest
 MAINTAINER Innovations Anonymous <InnovAnon-Inc@protonmail.com>
 
 LABEL version="1.0"
@@ -20,7 +20,7 @@ LABEL org.label-schema.vcs-url="https://github.com/InnovAnon-Inc/llvm-musl"
 # Run the command inside your image filesystem.
 # Copy the file from your host to your current location.
 COPY dpkg.list .
-RUN apt-fast install -y `cat dpkg.list`
+RUN apt-fast install -qy `cat dpkg.list`
 
 ENV B /tmp
 

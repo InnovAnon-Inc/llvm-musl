@@ -14,9 +14,14 @@ docker version ||
 dockerd &
 
 sudo             -- \
-nice -n -20      -- \
+nice -n +20      -- \
 sudo -u `whoami` -- \
-docker build -t llvm-musl .
+docker build -t innovanon/llvm-musl .
+
 docker push innovanon/llvm-musl:latest || :
-docker run   -t llvm-musl
+
+sudo             -- \
+nice -n +20      -- \
+sudo -u `whoami` -- \
+docker run   -t innovanon/llvm-musl
 

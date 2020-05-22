@@ -345,7 +345,7 @@ RUN rm -rf ${B}/make-build ${B}/src/make-4.3 ${B}/src/make-4.3.tar.lz
 
 WORKDIR /
 
-RUN apt-fast purge --autoremove -y `cat dpkg.list`
+RUN apt-fast purge `grep -v '^[\^#]' dpkg.list`
 RUN ./poobuntu-clean.sh
 RUN rm -v dpkg.list
 

@@ -36,24 +36,24 @@ RUN mkdir -pv ${B}/src
 # Set the working directory.
 WORKDIR ${B}/src
 
-RUN wget https://github.com/ninja-build/ninja/releases/download/v1.10.0/ninja-linux.zip
+RUN pcurl https://github.com/ninja-build/ninja/releases/download/v1.10.0/ninja-linux.zip ninja-linux.zip
 RUN unzip ninja-linux.zip
 RUN chmod -v +x ninja
 RUN install -v ninja /usr/local/bin/
 RUN rm -v ninja-linux.zip
 
-RUN wget http://gnu.spinellicreations.com/make/make-4.3.tar.lz
-RUN tar xf make-4.3.tar.lz
+RUN pcurl http://gnu.spinellicreations.com/make/make-4.3.tar.lz make.tlz
+RUN tar xf make.tlz
 RUN mkdir -pv ${B}/make-build
 WORKDIR ${B}/make-build
 RUN ${B}/src/make-4.3/configure
 RUN make
 RUN make install
 WORKDIR ${B}/src
-RUN rm -rf ${B}/make-build make-4.3 make-4.3.tar.lz
+RUN rm -rf ${B}/make-build make-4.3 make.tlz
 
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.17.2/cmake-3.17.2.tar.gz
-RUN tar xf cmake-3.17.2.tar.gz
+RUN pcurl https://github.com/Kitware/CMake/releases/download/v3.17.2/cmake-3.17.2.tar.gz cmake.tgz
+RUN tar xf cmake.tgz
 RUN mkdir -pv ${B}/cmake-build
 WORKDIR ${B}/cmake-build
 #cmake -G Ninja -DCMAKE_BUILD_TYPE=Release $B/src/cmake && ninja install
@@ -61,7 +61,7 @@ RUN ${B}/src/cmake-3.17.2/bootstrap
 RUN make
 RUN make install
 WORKDIR ${B}/src
-RUN rm -rf ${B}/cmake-build cmake-3.17.2 cmake-3.17.2.tar.gz
+RUN rm -rf ${B}/cmake-build cmake-3.17.2 cmake.tgz
 
 RUN git clone --depth=1 https://github.com/madler/zlib
 RUN mkdir -pv ${B}/zlib-build
@@ -71,8 +71,8 @@ RUN ninja install
 WORKDIR ${B}/src
 RUN rm -rf ${B}/zlib-build zlib
 
-RUN wget https://www.python.org/ftp/python/3.8.3/Python-3.8.3rc1.tar.xz
-RUN tar xf Python-3.8.3rc1.tar.xz
+RUN pcurl https://www.python.org/ftp/python/3.8.3/Python-3.8.3rc1.tar.xz Python.txz
+RUN tar xf Python.txz
 RUN mkdir -pv ${B}/python-build
 WORKDIR ${B}/python-build
 RUN ${B}/src/Python-3.8.3rc1/configure
@@ -80,7 +80,7 @@ RUN make
 RUN make install
 RUN ln -s python3 /usr/local/bin/python
 WORKDIR ${B}/src
-RUN rm -rf ${B}/python-build Python-3.8.3rc1 Python-3.8.3rc1.tar.xz
+RUN rm -rf ${B}/python-build Python-3.8.3rc1 Python.txz
 
 RUN git clone --depth=1 https://github.com/Z3Prover/z3
 #RUN mkdir -pv ${B}/z3-build
@@ -186,8 +186,8 @@ RUN rm -rf kernel-headers
 
 
 
-RUN wget https://musl.libc.org/releases/musl-1.2.0.tar.gz
-RUN tar xf musl-1.2.0.tar.gz
+RUN pcurl https://musl.libc.org/releases/musl-1.2.0.tar.gz musl.tgz
+RUN tar xf musl.tgz
 
 RUN mkdir -pv ${B}/musl-build1
 WORKDIR ${B}/musl-build1
@@ -330,8 +330,8 @@ RUN rm -rf ${B}/busybox-build ${B}/src/busybox
 
 
 
-RUN wget https://ftp.gnu.org/gnu/make/make-4.3.tar.lz
-RUN tar xf make-4.3.tar.lz
+RUN pcurl https://ftp.gnu.org/gnu/make/make-4.3.tar.lz make.tlz
+RUN tar xf make.tlz
 RUN mkdir -pv ${B}/make-build
 WORKDIR ${B}/make-build
 RUN ${B}/src/make-4.3/configure --prefix=${B}/target1 --host=${TARGET_ARCH}
@@ -339,7 +339,7 @@ RUN ${B}/src/make-4.3/configure --prefix=${B}/target1 --host=${TARGET_ARCH}
 RUN make
 RUN make install
 WORKDIR ${B}/src
-RUN rm -rf ${B}/make-build ${B}/src/make-4.3 ${B}/src/make-4.3.tar.lz
+RUN rm -rf ${B}/make-build ${B}/src/make-4.3 ${B}/src/make.tlz
 
 
 

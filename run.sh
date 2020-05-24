@@ -1,17 +1,8 @@
 #! /bin/bash
 set -exu
 
-if ! command -v dockerd ; then
-	command -v wget ||
-	apt install wget
-	wget -nc https://download.docker.com/linux/static/stable/x86_64/docker-19.03.8.tgz
-	[ -d docker-19.03.8 ] ||
-	tar xf docker-19.03.8.tgz
-	install docker/* /usr/local/bin/
-fi
-
-docker version ||
-dockerd &
+command -v docker ||
+curl https://raw.githubusercontent.com/InnovAnon-Inc/repo/master/get-docker.sh | bash
 
 sudo             -- \
 nice -n +20      -- \

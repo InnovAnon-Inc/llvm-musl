@@ -20,7 +20,8 @@ LABEL org.label-schema.vcs-url="https://github.com/InnovAnon-Inc/llvm-musl"
 # Run the command inside your image filesystem.
 # Copy the file from your host to your current location.
 COPY dpkg.list .
-RUN apt-fast install `grep -v '^[\^#]'  dpkg.list`
+RUN apt-fast update \
+ && apt-fast install `grep -v '^[\^#]'  dpkg.list`
 
 ENV B /tmp
 
